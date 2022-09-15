@@ -1,0 +1,35 @@
+﻿@model IQueryable<DataAccess.Widget>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Widget List</h2>
+<hr/>
+<table class="table table-bordered table-striped mb-0" id="datatable-editable">
+    <thead>
+        <tr>
+            <th>
+                Packs
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pack)
+                </td>
+                
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new {@style = "text-decoration: none;" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new {@style = "text-decoration: none;" })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+

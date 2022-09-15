@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WidgetsCompanyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuantityOrdered" Type="int" />
+    <Property Name="OrderedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="WidgetOrdered">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WidgetId" Type="int" Nullable="false" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Widgets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pack" Type="int" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="ModifiedAt" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_WidgetOrdered_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="WidgetOrdered" Type="Self.WidgetOrdered" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WidgetOrdered">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WidgetOrdered_Widgets">
+    <End Role="Widgets" Type="Self.Widgets" Multiplicity="1" />
+    <End Role="WidgetOrdered" Type="Self.WidgetOrdered" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Widgets">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WidgetOrdered">
+        <PropertyRef Name="WidgetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WidgetsCompanyModelStoreContainer">
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WidgetOrdered" EntityType="Self.WidgetOrdered" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Widgets" EntityType="Self.Widgets" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_WidgetOrdered_Order" Association="Self.FK_WidgetOrdered_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="WidgetOrdered" EntitySet="WidgetOrdered" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WidgetOrdered_Widgets" Association="Self.FK_WidgetOrdered_Widgets">
+      <End Role="Widgets" EntitySet="Widgets" />
+      <End Role="WidgetOrdered" EntitySet="WidgetOrdered" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

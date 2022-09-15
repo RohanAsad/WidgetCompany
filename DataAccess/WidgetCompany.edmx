@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WidgetsCompanyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuantityOrdered" Type="int" />
+          <Property Name="OrderedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="WidgetOrdered">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WidgetId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Widgets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pack" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="ModifiedAt" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_WidgetOrdered_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="WidgetOrdered" Type="Self.WidgetOrdered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WidgetOrdered">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WidgetOrdered_Widgets">
+          <End Role="Widgets" Type="Self.Widgets" Multiplicity="1" />
+          <End Role="WidgetOrdered" Type="Self.WidgetOrdered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Widgets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WidgetOrdered">
+              <PropertyRef Name="WidgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WidgetsCompanyModelStoreContainer">
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WidgetOrdered" EntityType="Self.WidgetOrdered" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Widgets" EntityType="Self.Widgets" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_WidgetOrdered_Order" Association="Self.FK_WidgetOrdered_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="WidgetOrdered" EntitySet="WidgetOrdered" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WidgetOrdered_Widgets" Association="Self.FK_WidgetOrdered_Widgets">
+            <End Role="Widgets" EntitySet="Widgets" />
+            <End Role="WidgetOrdered" EntitySet="WidgetOrdered" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WidgetsCompanyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="QuantityOrdered" Type="Int32" />
+          <Property Name="OrderedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="WidgetOrdereds" Relationship="WidgetsCompanyModel.FK_WidgetOrdered_Order" FromRole="Order" ToRole="WidgetOrdered" />
+        </EntityType>
+        <EntityType Name="WidgetOrdered">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="WidgetId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="WidgetsCompanyModel.FK_WidgetOrdered_Order" FromRole="WidgetOrdered" ToRole="Order" />
+          <NavigationProperty Name="Widget" Relationship="WidgetsCompanyModel.FK_WidgetOrdered_Widgets" FromRole="WidgetOrdered" ToRole="Widget" />
+        </EntityType>
+        <EntityType Name="Widget">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Pack" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="WidgetOrdereds" Relationship="WidgetsCompanyModel.FK_WidgetOrdered_Widgets" FromRole="Widget" ToRole="WidgetOrdered" />
+        </EntityType>
+        <EntityContainer Name="WidgetsCompanyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="WidgetOrdereds" EntityType="Self.WidgetOrdered" />
+          <EntitySet Name="Widgets" EntityType="Self.Widget" />
+          <AssociationSet Name="FK_WidgetOrdered_Order" Association="WidgetsCompanyModel.FK_WidgetOrdered_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="WidgetOrdered" EntitySet="WidgetOrdereds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WidgetOrdered_Widgets" Association="WidgetsCompanyModel.FK_WidgetOrdered_Widgets">
+            <End Role="Widget" EntitySet="Widgets" />
+            <End Role="WidgetOrdered" EntitySet="WidgetOrdereds" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_WidgetOrdered_Order">
+          <End Type="WidgetsCompanyModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="WidgetsCompanyModel.WidgetOrdered" Role="WidgetOrdered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WidgetOrdered">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WidgetOrdered_Widgets">
+          <End Type="WidgetsCompanyModel.Widget" Role="Widget" Multiplicity="1" />
+          <End Type="WidgetsCompanyModel.WidgetOrdered" Role="WidgetOrdered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Widget">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WidgetOrdered">
+              <PropertyRef Name="WidgetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WidgetsCompanyModelStoreContainer" CdmEntityContainer="WidgetsCompanyEntities">
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="WidgetsCompanyModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="QuantityOrdered" ColumnName="QuantityOrdered" />
+                <ScalarProperty Name="OrderedDate" ColumnName="OrderedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WidgetOrdereds">
+            <EntityTypeMapping TypeName="WidgetsCompanyModel.WidgetOrdered">
+              <MappingFragment StoreEntitySet="WidgetOrdered">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WidgetId" ColumnName="WidgetId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Widgets">
+            <EntityTypeMapping TypeName="WidgetsCompanyModel.Widget">
+              <MappingFragment StoreEntitySet="Widgets">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pack" ColumnName="Pack" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

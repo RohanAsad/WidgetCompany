@@ -1,0 +1,8 @@
+D:\.Net Projects\WidgetCompany\BusinessObject\bin\Debug\BusinessObject.dll
+D:\.Net Projects\WidgetCompany\BusinessObject\bin\Debug\BusinessObject.pdb
+D:\.Net Projects\WidgetCompany\BusinessObject\bin\Debug\System.ComponentModel.Annotations.dll
+D:\.Net Projects\WidgetCompany\BusinessObject\obj\Debug\BusinessObject.csproj.AssemblyReference.cache
+D:\.Net Projects\WidgetCompany\BusinessObject\obj\Debug\BusinessObject.csproj.CoreCompileInputs.cache
+D:\.Net Projects\WidgetCompany\BusinessObject\obj\Debug\BusinessObject.csproj.CopyComplete
+D:\.Net Projects\WidgetCompany\BusinessObject\obj\Debug\BusinessObject.dll
+D:\.Net Projects\WidgetCompany\BusinessObject\obj\Debug\BusinessObject.pdb

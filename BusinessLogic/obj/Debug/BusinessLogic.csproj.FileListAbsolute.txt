@@ -1,0 +1,14 @@
+D:\.Net Projects\WidgetCompany\BusinessLogic\bin\Debug\BusinessLogic.dll
+D:\.Net Projects\WidgetCompany\BusinessLogic\bin\Debug\BusinessLogic.pdb
+D:\.Net Projects\WidgetCompany\BusinessLogic\bin\Debug\BusinessObject.dll
+D:\.Net Projects\WidgetCompany\BusinessLogic\bin\Debug\DataAccess.dll
+D:\.Net Projects\WidgetCompany\BusinessLogic\bin\Debug\EntityFramework.dll
+D:\.Net Projects\WidgetCompany\BusinessLogic\bin\Debug\BusinessObject.pdb
+D:\.Net Projects\WidgetCompany\BusinessLogic\bin\Debug\DataAccess.pdb
+D:\.Net Projects\WidgetCompany\BusinessLogic\bin\Debug\DataAccess.dll.config
+D:\.Net Projects\WidgetCompany\BusinessLogic\bin\Debug\EntityFramework.xml
+D:\.Net Projects\WidgetCompany\BusinessLogic\obj\Debug\BusinessLogic.csproj.AssemblyReference.cache
+D:\.Net Projects\WidgetCompany\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
+D:\.Net Projects\WidgetCompany\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+D:\.Net Projects\WidgetCompany\BusinessLogic\obj\Debug\BusinessLogic.dll
+D:\.Net Projects\WidgetCompany\BusinessLogic\obj\Debug\BusinessLogic.pdb

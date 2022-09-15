@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b6483d7d-a9cd-4cc2-a8bf-289d13f9201e": {
+      "ProjectGuid": "b6483d7d-a9cd-4cc2-a8bf-289d13f9201e",
+      "DisplayName": "WidgetCompany",
+      "ColorIndex": 0
+    },
+    "5700d892-c261-4647-928d-63698e189422": {
+      "ProjectGuid": "5700d892-c261-4647-928d-63698e189422",
+      "DisplayName": "BusinessLogic",
+      "ColorIndex": 1
+    },
+    "b1b05e60-9fad-4b37-b75c-d1ad811f514d": {
+      "ProjectGuid": "b1b05e60-9fad-4b37-b75c-d1ad811f514d",
+      "DisplayName": "BusinessObject",
+      "ColorIndex": 2
+    },
+    "1b781265-ad64-4da8-92ae-39615b81aa53": {
+      "ProjectGuid": "1b781265-ad64-4da8-92ae-39615b81aa53",
+      "DisplayName": "DataAccess",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

@@ -1,0 +1,42 @@
+﻿@model IQueryable<DataAccess.Order>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Orders List</h2>
+<hr />
+@foreach (var item in Model)
+{
+    <h4><b>Ordered Quantity: </b>@item.QuantityOrdered</h4>
+
+    <table class="table table-bordered table-striped mb-0" id="datatable-editable">
+        <thead>
+            <tr>
+                <th>
+                    Packs
+                </th>
+                <th>
+                    Quantity Delivered
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in item.WidgetOrdereds)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Widget.Pack)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Quantity)
+                </td>
+
+                
+            </tr>
+            }
+        </tbody>
+
+    </table>
+}
